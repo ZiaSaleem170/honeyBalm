@@ -1,0 +1,27 @@
+<style>
+.orbe-custom-selector > div {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-size: cover;
+}
+button.orbe-custom-selector {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    margin-left: auto;
+    width: 42px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+</style>
+
+<button class="orbe-custom-selector" aria-label="Change Shipping Country" onclick="orbito.openAndRefreshModal();">
+  <div class="orbe-flags-{{ localization.country.iso_code | downcase }}"></div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none">
+    <path d="M10.2832 0.585938C10.4004 0.679688 10.4004 0.867188 10.2832 0.984375L5.38477 5.88281C5.26758 6 5.10352 6 4.98633 5.88281L0.0878906 0.984375C-0.0292969 0.867188 -0.0292969 0.679688 0.0878906 0.585938L0.533203 0.117188C0.650391 0 0.837891 0 0.931641 0.117188L5.19727 4.35938L9.43945 0.117188C9.5332 0 9.7207 0 9.83789 0.117188L10.2832 0.585938Z" fill="black"/>
+  </svg>
+</button>
