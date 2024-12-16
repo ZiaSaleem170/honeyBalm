@@ -1,3 +1,15 @@
+{% assign first_name = 'First Name' %}
+{% assign last_name = 'Last Name' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% assign first_name = '' %}
+{% if shop.locale == 'es' %}
+{% endif %}
+
 <div class="contact-us-wrap pad2-mbl py-section-vertical-spacing">
   <div class="container">
     <div class="contact-us-innerWrap">
@@ -24,7 +36,7 @@
                   name="contact[first_name]"
                   id="ContactFormName"
                   required
-                  placeholder="First Name*"
+                  placeholder="{{ first_name }}*"
                   aria-required="true">
 
                 <input type="text"
@@ -32,7 +44,7 @@
                   name="contact[last_name]"
                   id="ContactFormName"
                   required
-                  placeholder="Last Name*"
+                  placeholder="{{ last_name }}*"
                   aria-required="true">
               
                 <input type="text"

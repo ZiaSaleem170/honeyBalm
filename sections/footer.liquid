@@ -1,3 +1,22 @@
+{% assign address = '<p>
+                       <strong>Honeybalm B.V.</strong> <br>
+                        Address: Habraken 2601, 5507TR, Veldhoven, Netherlands <br>
+                        Company nr: 92783333 <br>
+                        VAT nr: NL866171046B01 <br>
+                        <a href="mailto:info@honeybalm.com">info@honeybalm.com</a> <br>          
+                     </p>' %}
+{% assign copy_right = 'Honeybalm USA' %}
+
+{% if shop.locale == 'es' %}
+  {% assign address = '<p>
+                         <strong>Honeybalm B.V.</strong> <br>
+                          Dirección: Habraken 2601, 5507TR, Veldhoven, Netherlands <br>
+                          Número de empresa: 92783333 <br>
+                          NIF: NL866171046B01 <br>
+                          <a href="mailto:info@honeybalm.es">info@honeybalm.es</a> <br>          
+                       </p>' %}
+  {% assign copy_right = 'Honeybalm Spain' %}
+{% endif %}
 
 {%- liquid
   assign country_selector = false
@@ -214,20 +233,14 @@
       {%- endfor -%}
 
         <div class="info-wrap">   
-         <p>
-           <strong>Honeybalm B.V.</strong> <br>
-            Address: Habraken 2601, 5507TR, Veldhoven, Netherlands <br>
-            Company nr: 92783333 <br>
-            VAT nr: NL866171046B01 <br>
-            <a href="mailto:info@honeybalm.com">info@honeybalm.com</a> <br>          
-         </p>
+         {{ address }}
      </div>
     </div>
 
     <div class="text-scheme-text md:flex justify-between section-content-top-margin container footer-bottom">
 
       <div class="{% if country_selector or locale_selector %}lg:w-1/3{% endif %}">
-        <p class="text-sm base normal">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}.</p>
+        <p class="text-sm base normal">&copy; {{ 'now' | date: "%Y" }}, {{ copy_right }}.</p>
       </div>
 
       {%- if section.settings.show_payment_icons -%}

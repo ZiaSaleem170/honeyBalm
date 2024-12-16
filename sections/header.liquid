@@ -501,7 +501,7 @@
             </div>
           </div>
           {% else %}
-            <a {% if link.active %}aria-current="page"{% endif %} href="{{ link.url }}" class="{{ link_classes }} base {% if link.title == 'Bundle Builder' %}nav-bundle{% endif %}">
+            <a {% if link.active %}aria-current="page"{% endif %} href="{{ link.url }}" class="{{ link_classes }} base {% if link.url contains '/pages/bundle-builder' %}nav-bundle{% endif %}">
               {{ link.title }}
             </a>
           {% endif %}

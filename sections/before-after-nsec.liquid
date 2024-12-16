@@ -1,3 +1,10 @@
+{% assign after = 'After' %}
+{% assign before = 'Before' %}
+
+{% if shop.locale == 'es' %}
+  {% assign after = 'Después' %}
+  {% assign before = 'Antes' %}
+{% endif %}
 <style>
   .twentytwenty-overlay {
     display: none;
@@ -65,8 +72,8 @@
   <div class="container bs-cont">
     <div class="ba-nsec-ltr">
       <div class="bs-inner-wrap">
-        <div class="ba-tag before base-sm">Before</div>
-        <div class="ba-tag after base-sm">After</div>
+        <div class="ba-tag before base-sm">{{ before }}</div>
+        <div class="ba-tag after base-sm">{{ after }}</div>
         <div class='twentytwenty-container'>
             <img src='{{ section.settings.img1 | img_url: '640x' }}' />
             <img src='{{ section.settings.img2 | img_url: '640x' }}' />
