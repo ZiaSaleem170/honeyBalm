@@ -1,3 +1,14 @@
+{% assign add_to_bag = 'Add to bag' %}
+{% assign off = '% off' %}
+{% assign tag = 'New' %}
+{% assign tag2 = 'Best seller' %}
+
+{% if shop.locale == 'es' %}
+  {% assign add_to_bag = 'Añadir a la cesta' %}
+  {% assign off = '% dto' %}
+  {% assign tag = 'Nuevo' %}
+  {% assign tag2 = 'Mejor vendido' %}
+{% endif %}
 <style>
 .all_ps ul.splide__list.w-full {
     flex-wrap: wrap;
@@ -50,7 +61,7 @@
               <li class="plist splide__slide">
                 <div class="plist-img">
                   {% if block.settings.tag != blank %}
-                  <div class="tag base-sm strong {% if block.settings.tag == 'Best seller' %}best-seller{% endif %} {% if block.settings.tag == 'New' %}new{% endif %}">{{ block.settings.tag }}</div>
+                  <div class="tag base-sm strong {% if block.settings.tag == tag2 %}best-seller{% endif %} {% if block.settings.tag == tag %}new{% endif %}">{{ block.settings.tag }}</div>
                   {% endif %}
                   {% assign product = all_products[block.settings.prdct] %}
                   <a href="{{ product.url }}">
@@ -109,7 +120,7 @@
                       {% assign first_variant = product.variants[1] %}
                         {% if first_variant.compare_at_price > first_variant.price %}
                           {% assign discount = first_variant.compare_at_price | minus: first_variant.price | times: 100 | divided_by: first_variant.compare_at_price | round %}
-                          <div class="pl-off base normal">{{ discount }}% off</div>
+                          <div class="pl-off base normal">{{ discount }}{{ off }}</div>
                         {% endif %}
                       <select class="base normal" name="id">
                         {% for variant in product.variants %}
@@ -118,13 +129,13 @@
                             {% assign discount2 = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price | round %}
                             {% assign vdiscount = discount2 %}
                           {% endif %}
-                          <option value="{{ variant.id }}" disc="{{ vdiscount }}" v-price="{{ variant.price | money }}" {% if forloop.index == 2 %}selected{% endif %}>{{ variant.title }}{% unless vdiscount == 0 %} &nbsp&nbsp&nbsp&nbsp&nbsp({{ vdiscount }}% off) {% endunless %}</option>
+                          <option value="{{ variant.id }}" disc="{{ vdiscount }}" v-price="{{ variant.price | money }}" {% if forloop.index == 2 %}selected{% endif %}>{{ variant.title }}{% unless vdiscount == 0 %} &nbsp&nbsp&nbsp&nbsp&nbsp({{ vdiscount }}{{ off }}) {% endunless %}</option>
                         {% endfor %}
                       </select>
                     </div>
                     
                     <button class="inline-block push-btn" type="submit">
-                      <span class="push-btn-surface">Add to bag <span class="atc-money normal">{% if product.variants.size == 1 %}{{ product.selected_or_first_available_variant.price | money }}{% else %}{{ product.variants[1].price | money }}{% endif %}</span></span>
+                      <span class="push-btn-surface">{{ add_to_bag }} <span class="atc-money normal">{% if product.variants.size == 1 %}{{ product.selected_or_first_available_variant.price | money }}{% else %}{{ product.variants[1].price | money }}{% endif %}</span></span>
                     </button>
 
                   </form>

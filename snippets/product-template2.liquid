@@ -1,3 +1,17 @@
+{% assign off = '% off' %}
+{% assign text = 'Choose your pack:' %}
+{% assign shipping_heading = "Shipping and returns" %}
+{% assign shipping_content = "<p>On average, orders will be shipped in <strong>24-72 hours</strong>. Due to extreme demand, our current average delivery time it 5-7 working days.</p>
+                              <br><p>You can return your order up to 14 days if the balms have not yet been used. We will ensure that the purchase price is credited to your account within 3 working days of receiving the return.</p>
+                              <br><p>For returns or replacements, please contact us at: <a href='mailto:info@honeybalm.com'>info@honeybalm.com</a></p>" %}
+{% if shop.locale == 'es' %}
+  {% assign off = '% dto' %}
+  {% assign text = 'Elige tu lote:' %}
+  {% assign shipping_heading = "Envíos y devoluciones" %}
+  {% assign shipping_content = "<p>En promedio, los pedidos se enviarán en un plazo de 24-72 horas. Debido a la alta demanda, nuestro tiempo de entrega actual es de aproximadamente 5 días laborables.</p>
+                                <br><p>Puedes devolver tu pedido hasta 14 días si los bálsamos no han sido utilizados. Nos aseguraremos de que el importe de la compra se abone en tu cuenta dentro de los 3 días laborables siguientes a la recepción de la devolución.</p>
+                                <br><p>Para devoluciones o reemplazos, por favor contáctanos en: <a href='mailto:info@honeybalm.com'>info@honeybalm.com</a></p>" %}
+{% endif %}
 {% # theme-check-disable TemplateLength %}
 {% liquid
   assign section_color = section.settings.color_scheme
@@ -469,7 +483,7 @@
                     {%- endif -%}
                     <{{ header_tag }} class="heading2 strong ptitle {{ block.settings.text_align }}">
                       {{ product.title | escape }}
-                      <div class="pdp-off base normal" {% unless template.suffix == 'sorbet' or template.suffix == 'exotic' or template.suffix == 'all_flavour' or template.suffix == 'classic' or template.suffix == 'spf_all_flavours'%}style="display: none;"{% endunless %}>{{ vdiscount }}% off</div>
+                      <div class="pdp-off base normal" {% unless template.suffix == 'sorbet' or template.suffix == 'exotic' or template.suffix == 'all_flavour' or template.suffix == 'classic' or template.suffix == 'spf_all_flavours'%}style="display: none;"{% endunless %}>{{ vdiscount }}{{ off }}</div>
                     </{{ header_tag }}>
                     {%- if is_feature -%}
                       </a>
@@ -578,14 +592,14 @@
                     {% continue %} 
                     {% endif %}
                     <div class="base strong csm-pack">
-                      Choose your pack:
+                      {{ text }}
                     </div>
                     <div class="prselect-wrap">
                       {% assign first_variant = product.variants.first %}
                         <!-- { % if first_variant.compare_at_price > first_variant.price %} -->
                           {% assign discount = 0 %}
                           {% assign discount = first_variant.compare_at_price | minus: first_variant.price | times: 100 | divided_by: first_variant.compare_at_price | round %}
-                          <div class="prl-off base normal" style="display: none;">{{ discount }}% off</div>
+                          <div class="prl-off base normal" style="display: none;">{{ discount }}{{ off }}</div>
                         <!-- { % endif %} -->
                       <select class="base normal" name="idd">
                         {% for variant in product.variants %}
@@ -594,7 +608,7 @@
                             {% assign discount2 = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price | round %}
                             {% assign vdiscount = discount2 %}
                           {% endif %}
-                          <option value="{{ variant.id }}" disc="{{ vdiscount }}" v-price="{{ variant.price | money }}">{{ variant.title }} {% unless vdiscount == 0 %}&nbsp&nbsp&nbsp&nbsp&nbsp({{ vdiscount }}% off){% endunless %}</option>
+                          <option value="{{ variant.id }}" disc="{{ vdiscount }}" v-price="{{ variant.price | money }}">{{ variant.title }} {% unless vdiscount == 0 %}&nbsp&nbsp&nbsp&nbsp&nbsp({{ vdiscount }}{{ off }}){% endunless %}</option>
                         {% endfor %}
                       </select>
                     </div>
@@ -766,15 +780,13 @@
           </div>
           <div class="ing-tab two">
             <div class="ing-tab-heading base strong">
-              Shipping and returns
+              {{ shipping_heading }}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
                 <path d="M11.5 5.875C11.75 5.875 12 6.125 12 6.375V7.375C12 7.65625 11.75 7.875 11.5 7.875H7V12.375C7 12.6562 6.75 12.875 6.5 12.875H5.5C5.21875 12.875 5 12.6562 5 12.375V7.875H0.5C0.21875 7.875 0 7.65625 0 7.375V6.375C0 6.125 0.21875 5.875 0.5 5.875H5V1.375C5 1.125 5.21875 0.875 5.5 0.875H6.5C6.75 0.875 7 1.125 7 1.375V5.875H11.5Z" fill="black"/>
               </svg>
             </div>
             <div class="ing-tab-content base normal">
-              <p>On average, orders will be shipped in <strong>24-72 hours</strong>. Due to extreme demand, our current average delivery time is around 5 working days.</p>
-              <br><p>You can return your order up to 14 days if the balms have not yet been used. We will ensure that the purchase price is credited to your account within 3 working days of receiving the return.</p>
-              <br><p>For returns or replacements, please contact us at: <a href="mailto:info@honeybalm.co.uk">info@honeybalm.co.uk</a></p>
+              {{ shipping_content }}
             </div>
           </div>
         </div>

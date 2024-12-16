@@ -269,7 +269,7 @@ section#AnnouncementBar{
 {% endif %}
 </style>
 
-{% if template contains 'product' and product.handle == 'applicator-replacement-set' or product.handle == 'hb-pumpkin' or product.handle == 'honey-lip-scrub' %}
+{% if template contains 'product' and product.handle == 'applicator-replacement-set' or product.handle == 'hb-pumpkin' or product.handle == 'hb-candy' %}
 <style>
   .pdp-off.base.normal {
     display: block !important;
@@ -293,7 +293,7 @@ section#AnnouncementBar{
 {% endif %}
 
 <style>
-a.pumpkin.pumpkin-spice, a.mystery.mystery-balm {
+a.pumpkin.pumpkin-spice, a.mystery.mystery-balm, a.candy.candy-cane {
     opacity: 0.5;
 }
 {% comment %}
@@ -314,7 +314,7 @@ a.honey.honey, a.coconut.coconut, a.cherry.cherry, a.strawberry.strawberry {
 }
 .menu-img-wrap.pumpkin.spice, .menu-img-wrap.pumpkin.spice ~ div, 
 .menu-img-wrap.mystery.balm, .menu-img-wrap.mystery.balm ~ div, 
-.menu-img-wrap.honey.lip.scrub, .menu-img-wrap.honey.lip.scrub ~ div{
+.menu-img-wrap.candy.cane, .menu-img-wrap.candy.cane ~ div{
     opacity: 0.5;
 }
 </style>
@@ -403,4 +403,14 @@ a.honey.honey, a.coconut.coconut, a.cherry.cherry, a.strawberry.strawberry {
     display: none !important;
   }
   </style>
+{% endif %}
+{% if shop.locale == 'es' %}
+<style>
+  .pl-off, .prl-off {
+    left: 130px;
+  }
+  .sold__out, .sold__out ~ div{
+    opacity: 0.5;
+  }
+</style>
 {% endif %}

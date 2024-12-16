@@ -1,3 +1,7 @@
+{% assign off = '% off' %}
+{% if shop.locale == 'es' %}
+  {% assign off = '% dto' %}
+{% endif %}
 <style>
 .vid-sec-{{ section.id }}{
   background-color: {{ section.settings.clr }};
@@ -48,11 +52,11 @@
   }
   </script>
 
-{% unless product.handle == 'hb-pumpkin' or product.handle == 'hb-mystery-balm' or product.handle == 'honey-lip-scrub' %}
+{% unless product.handle == 'hb-pumpkin' or product.handle == 'hb-mystery-balm'  or product.handle == 'hb-candy' %}
   <script>
     // var discount = thiss.options[thiss.selectedIndex].getAttribute('disc');
-    // thiss.parentElement.querySelector('.prl-off').innerHTML = discount+'% off';
-    // thiss.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'% off';
+    // thiss.parentElement.querySelector('.prl-off').innerHTML = discount+'{ { off }}';
+    // thiss.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'{ { off }}';
     // document.querySelector('.product-content [name="id"]').value = thiss.value;
     // thiss.closest('.choose-wrap').querySelector('.pr-atc').innerHTML = thiss.options[thiss.selectedIndex].getAttribute('v-price');
     
@@ -60,9 +64,9 @@
       var selects = document.querySelector('.prselect-wrap select');
         selects.addEventListener('change', function(){
           var discount = this.options[this.selectedIndex].getAttribute('disc');
-          this.parentElement.querySelector('.prl-off').innerHTML = discount+'% off';
-          this.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'% off';
-          document.querySelector('.sticky-atc-title .pdp-off').innerHTML = discount+'% off';
+          this.parentElement.querySelector('.prl-off').innerHTML = discount+'{{ off }}';
+          this.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'{{ off }}';
+          document.querySelector('.sticky-atc-title .pdp-off').innerHTML = discount+'{{ off }}';
           if (discount == 0){
             this.closest('.product-content').querySelector('.pdp-off ').style.display="none";
             this.parentElement.querySelector('.prl-off').style.display="none";
@@ -345,7 +349,7 @@
       "default": "Caramelized Pear"
     },
     {
-      "type": "html",
+     "type": "html",
       "id": "logo12",
       "label": "Logo 12",
       "default": "🍐"

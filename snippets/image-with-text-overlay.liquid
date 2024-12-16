@@ -1,3 +1,10 @@
+{% assign text1 = '🗓 Every day, an extra sale' %}
+{% assign text2 = '+ get a FREE limited edition Caramelized Pear lip balm with orders above $39.95!' %}
+
+{% if shop.locale == 'es' %}
+  {% assign text1 = '🗓 Cada día, una venta extra' %}
+  {% assign text2 = '¡Obtén un bálsamo labial de edición limitada de Pera Caramelizada GRATIS con pedidos superiores a $39.95!' %}
+{% endif %}
 {% liquid
   assign image_class = 'w-full'
   unless loading
@@ -81,7 +88,7 @@
     {% endif %}
      {% if template.suffix == index %}
       <div class="ntxt">
-        + get a FREE limited edition Caramelized Pear lip balm with orders above $39.95!
+        {{ text2 }}
       </div>
     {% endif %}
 
@@ -116,7 +123,7 @@
                       </div> -->
         {% if template.suffix == index %}
           <div class="new-text-svg">
-            🗓 Every day, an extra sale  
+                 {{ text1 }}  
           </div>
         {% endif %}
           {% endunless %}

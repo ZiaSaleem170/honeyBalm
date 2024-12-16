@@ -1,3 +1,16 @@
+{% assign search_text = 'Search for flavor…' %}
+{% assign text1 = 'Searching for' %}
+{% assign text2 = 'Lip balm' %}
+{% assign text3 = 'Accessories' %}
+{% assign text4 = 'Lip scrub' %}
+
+{% if shop.locale == 'es' %}
+  {% assign search_text = 'Buscar sabor…' %}
+  {% assign text1 = 'Búsqueda de' %}
+  {% assign text2 = 'Bálsamo labial' %}
+  {% assign text3 = 'Accesorios' %}
+  {% assign text4 = 'Exfoliante labial' %}
+{% endif %}
   <!-- <form x-ref="searchForm" action="{{ routes.search_url }}" method="get" role="search" class="csm-search-form"> -->
   <div class="csm-search-form">
     <div x-ref="searchFieldComponent" class="relative py-2">
@@ -8,7 +21,7 @@
         autocomplete="off"
         value=""
         class="header-search-input pl-9 py-2 placeholder:text-scheme-text font-secondary w-full border-0 shadow-none bg-transparent"
-        placeholder="Search for flavor…"
+        placeholder="{{ search_text }}"
       >
       <button class="absolute left-0 top-1/2 transform -translate-y-1/2 p-1 ls-search" aria-label="{{ 'general.search.submit' | t }}">
         <span class="inline-block">
@@ -26,7 +39,7 @@
       </button>
     </div>
     <div class="live-search-wrap">
-      <div class="ls-for-wrap heading4 strong">Searching for ‘<span></span>’</div>
+      <div class="ls-for-wrap heading4 strong">{{ text1 }} ‘<span></span>’</div>
       <ul class="live-search-list">
         {% for pr in collections['search-products'].products %}
         <li search="{{ pr.title | downcase | replace: 'honeybalm ', '' }}">
@@ -34,7 +47,7 @@
           <div class="lsearch-img"><img src="{{ pr.featured_image.src | img_url: '200x' }}"></div>
           <div class="lsearch-content">
             <div class="ls-title heading4 strong">{{ pr.title | replace: 'Honeybalm', '' }}</div>
-            <div class="ls-content base normal">{% if pr.title contains 'Applicator' %}Accessories{% elsif pr.title contains 'Totebag' or pr.title contains 'Packaging' %}Accessories{% elsif pr.title contains 'Scrub' %}Lip scrub{% else %}Lip balm{% endif %}</div>
+            <div class="ls-content base normal">{% if pr.handle contains 'applicator' %}{{ text3 }}{% elsif pr.handle contains 'totebag' or pr.handle contains 'packaging' %}{{ text3 }}{% elsif pr.handle contains 'scrub' %}{{ text4 }}{% else %}{{ text2 }}{% endif %}</div>
           </div>
         </li>
         {% endfor %}

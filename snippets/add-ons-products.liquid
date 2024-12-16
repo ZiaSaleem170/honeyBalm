@@ -1,3 +1,10 @@
+{% assign add_to_bag = 'Add to bag +' %}
+{% assign off = '% off' %}
+
+{% if shop.locale == 'es' %}
+  {% assign add_to_bag = 'Añadir a la cesta +' %}
+  {% assign off = '% dto' %}
+{% endif %}
 <style>
   .add-ons-prdct {
     background: white;
@@ -51,7 +58,7 @@
             {% assign vdiscount = discount2 %}
           {% endif %}
           {% unless vdiscount == 0 %}
-          <div class="pdp-off base normal upsell">{{ vdiscount }}% off</div>
+          <div class="pdp-off base normal upsell">{{ vdiscount }}{{ off }}</div>
           {% endunless %}
         <div class="base strong">{{ p1.title }}</div>
         {% render 'product_text', product: p1 %}
@@ -62,7 +69,7 @@
           {% render 'properties', product: p1 %}
           <button type="submit">
             <span class="push-btn-surface w-full outline-btn">
-              Add to bag +
+              {{ add_to_bag }}
             </span>
           </button>
         </form>
@@ -84,7 +91,7 @@
             {% assign vdiscount = discount2 %}
           {% endif %}
           {% unless vdiscount == 0 %}
-          <div class="pdp-off base normal upsell">{{ vdiscount }}% off</div>
+          <div class="pdp-off base normal upsell">{{ vdiscount }}{{ off }}</div>
           {% endunless %}
         <div class="base strong">{{ p2.title }}</div>
         {% render 'product_text', product: p2 %}
@@ -95,7 +102,7 @@
           {% render 'properties', product: p2 %}
           <button type="submit">
             <span class="push-btn-surface w-full outline-btn">
-              Add to bag +
+              {{ add_to_bag }}
             </span>
           </button>
         </form>

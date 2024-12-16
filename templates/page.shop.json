@@ -36,6 +36,7 @@
         },
         "block_4nxaf9": {
           "type": "block",
+          "disabled": true,
           "settings": {
             "img": "shopify://shop_images/Candy-Cane.webp",
             "hovimg": "shopify://shop_images/Candy-Cane_Hover.webp",

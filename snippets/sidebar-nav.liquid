@@ -1,3 +1,42 @@
+{% assign title = 'Shop' %}
+{% assign title2 = 'Explore' %}
+{% assign ctitle = 'Accessories' %}
+{% assign ctitle2 = 'Packs' %}
+
+{% assign text1 = 'Honeybalm Honey' %}
+{% assign text2 = 'Discover our best-seller.' %}
+{% assign text3 = 'Build your own bundle' %}
+{% assign text4 = 'Get up to 75% discount!' %}
+{% assign text5 = 'Lip balm' %}
+{% assign text6 = 'Lip scrub' %}
+{% assign text7 = 'Reward system' %}
+
+{% assign btn = 'Shop now ' %}
+{% assign tag = 'New' %}
+{% assign tag2 = 'Sold out' %}
+{% assign tag3 = 'Temporarily unavailable' %}
+{% assign Bag = 'Bag' %}
+{% assign Account = 'Account' %}
+
+{% if shop.locale == 'es' %}
+  {% assign title = 'Comercio' %}
+  {% assign title2 = 'Explorar' %}
+  {% assign ctitle = 'Accesorios' %}
+  {% assign ctitle2 = 'Paquetes' %}
+  {% assign text1 = 'Honeybalm Miel' %}
+  {% assign text2 = 'Descubre nuestro más vendido.' %}
+  {% assign text3 = 'Crea tu propio paquete' %}
+  {% assign text4 = '¡Obtén hasta un 75% de descuento!' %}
+  {% assign text5 = 'Bálsamo labial' %}
+  {% assign text6 = 'Exfoliante labial' %}
+  {% assign text7 = 'Sistema de recompensas' %}
+  {% assign btn = 'Comprar ahora' %}
+  {% assign tag = 'Nuevo' %}
+  {% assign tag2 = 'Agotado' %}
+  {% assign tag3 = 'Temporalmente no disponible' %}
+  {% assign Bag = 'Bolsa' %}
+  {% assign Account = 'Cuenta' %}
+{% endif %}
 {%- assign base_font_class = base_font_class | replace: 'font-heading', 'font-main' %}
 <template data-should-teleport="#left-drawer-slot">
   <div
@@ -16,8 +55,8 @@
     </div> -->
     <a href="/pages/bundle-builder" class="bb_box">
       <div class="bb-content">
-        <div class="heading4 strong">Build your own bundle</div>
-        <div class="base normal">Get up to 75% discount!</div>
+        <div class="heading4 strong">{{ text3 }}</div>
+        <div class="base normal">{{ text4 }}</div>
       </div>
       <div class="bb_arrow">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
@@ -80,7 +119,7 @@
                     </li>
                     <li class="my-3 text-base mbl-nav-li b2b" style="--second-delay-tap: 7;">
                       <a class="mbl-nav-bg wo-sub " href="/pages/rewards">
-                        <span>Reward system</span>
+                        <span>{{ text7 }}</span>
                         <span class="w-3 h-3 block sub-chev rotate-180" :class="{'rotate-180': expanded}">
                           <svg class="theme-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M2 12L23.2826 36.0527C23.3724 36.1542 23.4826 36.2354 23.6062 36.291C23.7297 36.3467 23.8636 36.3755 23.999 36.3755C24.1345 36.3755 24.2684 36.3467 24.3919 36.291C24.5154 36.2354 24.6257 36.1542 24.7155 36.0527L46 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -110,7 +149,7 @@
                             {% assign link2 = link %}
 
 
-                            {% if link2.title == 'Accessories' %}
+                            {% if link2.title == ctitle %}
 
                               <ul x-show="expanded" x-collapse class="mbl-mega-p-wrap">
                               {% for pro in collections['applicators'].products %}
@@ -152,33 +191,33 @@
                                     {% assign pro_handle = link.url | split: '/products/' | last %}
                                     <!-- { % assign pro = all_products[pro_handle] %} -->
                                     {% assign pro = link.object %}
-                                    <div class="menu-img-wrap {{ link.title | downcase }}">
-                                      {% if link.title == "SPF Try-out box" or link.title == "Mystery Balm" or link.title == "Candy Cane" or link.title contains "scrub" %}
-                                        <img src="{{ pro.images[1].src | img_url: '300x' }}"/>
-                                      {% elsif link.title == "Try-out box" %}
-                                        <img src="{{ pro.images[0].src | img_url: '300x' }}"/>
-                                      {% elsif link2.title == 'Packs' %}
-                                        <img src="{{ pro.images[0].src | img_url: '300x' }}"/>                                      
-                                      {% elsif link.title == "Watermelon" %}
-                                        <img src="{{ pro.images[3].src | img_url: '300x' }}"/>
-                                      {% else %}
-                                        <img src="{{ pro.images[6].src | img_url: '300x' }}"/>
+                                    <div class="menu-img-wrap {{ link.title | downcase }} {% if pro.handle == "hb-pumpkin" or pro.handle == "hb-mystery-balm" or pro.handle == "hb-candy" %}sold__out{% endif %}">
+                                        {% if pro.handle == "spf-try-out-box" or pro.handle == "hb-mystery-balm" or pro.handle == "hb-candy" or pro.handle contains "scrub" %} 
+                                          <img src="{{ pro.images[1].src | img_url: '300x' }}"/>
+                                        {% elsif pro.handle == "try-out-box" %} 
+                                          <img src="{{ pro.images[0].src | img_url: '300x' }}"/>
+                                        {% elsif link2.title == ctitle2 %}
+                                          <img src="{{ pro.images[0].src | img_url: '300x' }}"/>                              
+                                        {% elsif pro.handle == "hb-watermelon" %}
+                                          <img src="{{ pro.images[3].src | img_url: '300x' }}"/>
+                                        {% else %}
+                                          <img src="{{ pro.images[6].src | img_url: '300x' }}"/>
+                                        {% endif %}
+                                      {% if pro.handle == "hb-caramelized-pear" or pro.handle contains "scrub" %}
+                                        <div class="menu-tag base-sm strong  new">{{ tag }}</div>
                                       {% endif %}
-                                      {% if link.title == "Caramelized Pear" or link.title == "Candy Cane" %}
-                                        <div class="menu-tag base-sm strong  new">New</div>
-                                      {% endif %}
-                                      {% if link.title == "Pumpkin Spice" or link.title == "Mystery Balm" %}
-                                        <div class="menu-tag base-sm strong  new">Sold out</div>
-                                        
-                                      {% elsif link.title == "Honey lip scrub" %}
-                                        <div class="menu-tag base-sm strong new temp_unavailable">Temporarily unavailable</div>
-                                        
+                                      {% if pro.handle == "hb-pumpkin" or pro.handle == "hb-mystery-balm" or pro.handle == "hb-candy" %}
+                                        <div class="menu-tag base-sm strong  new">{{ tag2 }}</div>
+                                        {% comment %}
+                                      {% elsif pro.handle == "spf-try-out-box" %}
+                                        <div class="menu-tag base-sm strong new temp_unavailable">{{ tag3 }}</div>
+                                        {% endcomment %}
                                       {% endif %}
                                     </div>
                                     <div class="mega-title heading4 strong">
                                       {{ link.title }}
                                     </div>
-                                    <div class="mega-text base normal">{% if link.title contains "scrub" %}Lip scrub{% else %}Lip balm{% endif %}</div>
+                                    <div class="mega-text base normal">{% if pro.handle contains "scrub" %}{{ text6 }}{% else %}{{ text5 }}{% endif %}</div>
                                   </a>
                                 </li>
                               {% endfor %}
@@ -206,7 +245,7 @@
                   {% if forloop.index == 2 %}
                     <li class="my-3 text-base mbl-nav-li b2b" style="--second-delay-tap: 7;">
                       <a class="mbl-nav-bg wo-sub " href="/account/login">
-                        <span>Account</span>
+                        <span>{{ Account }}</span>
                         <span class="w-3 h-3 block sub-chev rotate-180" :class="{'rotate-180': expanded}">
                           <svg class="theme-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M2 12L23.2826 36.0527C23.3724 36.1542 23.4826 36.2354 23.6062 36.291C23.7297 36.3467 23.8636 36.3755 23.999 36.3755C24.1345 36.3755 24.2684 36.3467 24.3919 36.291C24.5154 36.2354 24.6257 36.1542 24.7155 36.0527L46 12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

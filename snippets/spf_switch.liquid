@@ -1,3 +1,11 @@
+{% assign switch = 'With SPF' %}
+{% assign content = "<p>SPF (Sun Protection Factor), measures how well a lip balm protects your lips from the sun's harmful UV rays. SPF25 blocks about 96% of UVB rays, significantly reducing the risk of sunburn and long-term skin damage.</p><br><p>The taste and smell of our SPF balms aren’t different from the normal balms and Honeybalm SPF can be identified by the SPF logo on the back of each balm.</p>" %}
+{% if shop.locale == 'es' %}
+  {% assign switch = 'Con SPF' %}
+  {% assign content = "<p>El SPF (Factor de Protección Solar) mide qué tan bien un bálsamo labial protege tus labios de los dañinos rayos UV del sol. Un SPF25 bloquea aproximadamente el 96% de los rayos UVB, reduciendo significativamente el riesgo de quemaduras solares y daños a largo plazo en la piel.</p><br><p>El sabor y el aroma de nuestros bálsamos con SPF no son diferentes de los bálsamos normales, y el SPF de Honeybalm se puede identificar por el logo de SPF en la parte posterior de cada bálsamo.</p>" %}
+{% endif %}
+
+
 {% if template.suffix contains 'honey' or template.suffix contains 'strawberry' or template.suffix contains 'cherry' or template.suffix contains 'coconut' %}
   {% unless template.suffix contains 'applicators' %}
 <style>
@@ -99,14 +107,13 @@ span.qs-span {
       </span>
     </a>
   </div>
-  <div class="base normal">With SPF<span class="withSPF25">25</span></div>
+  <div class="base normal">{{ switch }}<span class="withSPF25">25</span></div>
   <div class="switch-qs">
     <span class="qs-span">
       ?
     </span>
     <div class="switch-qs-content">
-      <p>SPF (Sun Protection Factor), measures how well a lip balm protects your lips from the sun's harmful UV rays. SPF25 blocks about 96% of UVB rays, significantly reducing the risk of sunburn and long-term skin damage.</p>
-      <br><p>The taste and smell of our SPF balms aren’t different from the normal balms and Honeybalm SPF can be identified by the SPF logo on the back of each balm.</p>
+      {{ content }}
     </div>
   </div>
 </div>

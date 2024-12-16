@@ -18,9 +18,9 @@
               {%- endif -%} 
                 <div class="clr-img_wrap" style="background-color: {{ block.settings.clr }}">
                   {{ block.settings.image | image_url: width: 500 | image_tag }}
-                  {% if block.settings.title == "Caramelized Pear" or block.settings.title == 'Candy Cane' %}
+                  {% if block.settings.title == "Caramelized Pear" %}
                     <div class="menu-tag base-sm strong  new">New</div>
-                  {% elsif block.settings.title == "Pumpkin Spice" or block.settings.title == 'Mystery Balm' %}
+                  {% elsif block.settings.title == "Pumpkin Spice" or block.settings.title == 'Mystery Balm' or block.settings.title == 'Candy Cane' %}
                     <div class="menu-tag base-sm strong  new">Sold Out</div>
                   {% endif %}
                 </div>

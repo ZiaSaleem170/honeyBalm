@@ -1,6 +1,11 @@
+{% assign off = '% off' %}
+
+{% if shop.locale == 'es' %}
+  {% assign off = '% dto' %}
+{% endif %}
 <style>
   body.template-index .section-content.product-page {
-    background: #FAD3DC;
+    background: #FFDE93;
  }
   body.template-page .section-content.product-page {
     background: #FFFBEF;
@@ -122,8 +127,8 @@
       var selects = document.querySelector('.prselect-wrap select');
         selects.addEventListener('change', function(){
           var discount = this.options[this.selectedIndex].getAttribute('disc');
-          this.parentElement.querySelector('.prl-off').innerHTML = discount+'% off';
-          this.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'% off';
+          this.parentElement.querySelector('.prl-off').innerHTML = discount+'{{ off }}';
+          this.closest('.product-content').querySelector('.pdp-off ').innerHTML = discount+'{{ off }}';
           // document.querySelector('.sticky-atc-title .pdp-off').innerHTML = discount+'% off';
           if (discount == 0){
             this.closest('.product-content').querySelector('.pdp-off ').style.display="none";

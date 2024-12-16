@@ -1,3 +1,42 @@
+{% assign title = 'Shop' %}
+{% assign title2 = 'Explore' %}
+{% assign ctitle = 'Accessories' %}
+{% assign ctitle2 = 'Packs' %}
+
+{% assign text1 = 'Get rewards and enjoy Honeybalm even more!' %}
+{% assign text2 = 'See the rewards for yourself' %}
+{% assign text3 = 'Build your own bundle' %}
+{% assign text4 = 'Get up to 75% discount!' %}
+{% assign text5 = 'Lip balm' %}
+{% assign text6 = 'Lip scrub' %}
+{% assign btn = 'Shop now ' %}
+{% assign btn2 = 'Start now' %}
+
+{% assign tag = 'New' %}
+{% assign tag2 = 'Sold out' %}
+{% assign tag3 = 'Temporarily unavailable' %}
+{% assign Bag = 'Bag' %}
+{% assign Account = 'Account' %}
+
+{% if shop.locale == 'es' %}
+  {% assign title = 'Comercio' %}
+  {% assign title2 = 'Explorar' %}
+  {% assign ctitle = 'Accesorios' %}
+  {% assign ctitle2 = 'Paquetes' %}
+  {% assign text1 = '¡Obtén recompensas y disfruta de Honeybalm aún más!' %}
+  {% assign text2 = '¡Descubre las recompensas por ti mismo!' %}
+  {% assign text3 = 'Crea tu propio paquete' %}
+  {% assign text4 = '¡Obtén hasta un 75% de descuento!' %}
+  {% assign text5 = 'Bálsamo labial' %}
+  {% assign text6 = 'Exfoliante labial' %}
+  {% assign btn = 'Comprar ahora' %}
+  {% assign btn2 = '¡Empieza ahora!' %}
+  {% assign tag = 'Nuevo' %}
+  {% assign tag2 = 'Agotado' %}
+  {% assign tag3 = 'Temporalmente no disponible' %}
+  {% assign Bag = 'Bolsa' %}
+  {% assign Account = 'Cuenta' %}
+{% endif %}
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
 {%- liquid
   assign color_scheme = section.settings.color_scheme | default: 'primary'
@@ -353,17 +392,17 @@
               {% else %}
                 {%- render 'desktop-nav-featured-collection-links', link: link, crop: crop -%}
               {% endunless %}
-                {% if link.title == 'Explore' %}
+                {% if link.title == title2 %}
                   <div class="explore">
                     <div class="get">
                       <div class="get-title heading4 strong">
-                        Get rewards and enjoy Honeybalm even more!
+                        {{ text1 }}
                       </div>
                       <div class="get-txt base normal">
-                        See the rewards for yourself
+                        {{ text2 }}
                       </div>
                       <a class="exp-shop" href="/pages/rewards">
-                        <span class="push-btn-surface w-full outline-btn">Start now 
+                        <span class="push-btn-surface w-full outline-btn">{{ btn2 }} 
                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                           <path d="M7.3125 1.21875C7.4375 1.0625 7.6875 1.0625 7.84375 1.21875L14.375 7.75C14.5312 7.90625 14.5312 8.125 14.375 8.28125L7.84375 14.8125C7.6875 14.9688 7.4375 14.9688 7.3125 14.8125L6.6875 14.2188C6.53125 14.0625 6.53125 13.8125 6.6875 13.6875L11.5312 8.8125H0.875C0.65625 8.8125 0.5 8.65625 0.5 8.4375V7.5625C0.5 7.375 0.65625 7.1875 0.875 7.1875H11.5312L6.6875 2.34375C6.53125 2.21875 6.53125 1.96875 6.6875 1.8125L7.3125 1.21875Z" fill="black"></path>
                           </svg>
@@ -372,13 +411,13 @@
                     </div>
                     <div class="build">
                       <div class="get-title heading4 strong">
-                        Build your own bundle
+                        {{ text3 }}
                       </div>
                       <div class="get-txt base normal">
-                        Get up to 75% discount!
+                        {{ text4 }}
                       </div>
                       <a class="exp-shop" href="/pages/bundle-builder">
-                        <span class="push-btn-surface w-full outline-btn">Shop now 
+                        <span class="push-btn-surface w-full outline-btn">{{ btn }} 
                           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
                           <path d="M7.3125 1.21875C7.4375 1.0625 7.6875 1.0625 7.84375 1.21875L14.375 7.75C14.5312 7.90625 14.5312 8.125 14.375 8.28125L7.84375 14.8125C7.6875 14.9688 7.4375 14.9688 7.3125 14.8125L6.6875 14.2188C6.53125 14.0625 6.53125 13.8125 6.6875 13.6875L11.5312 8.8125H0.875C0.65625 8.8125 0.5 8.65625 0.5 8.4375V7.5625C0.5 7.375 0.65625 7.1875 0.875 7.1875H11.5312L6.6875 2.34375C6.53125 2.21875 6.53125 1.96875 6.6875 1.8125L7.3125 1.21875Z" fill="black"></path>
                           </svg>
@@ -387,11 +426,11 @@
                     </div>
                   </div>
                 {% endif %}
-                {% if link.title == 'Shop' %}
+                {% if link.title == title %}
                   {% for child_link in link.links %}
 
 
-                    {% if child_link.title == 'Accessories' %}
+                    {% if child_link.title == ctitle %}
                       {% if child_link.links != blank %}
                         <ul class="{{ child_link.title | handle }} mega-p {% if forloop.index == 1 %} active {% endif %}">
                           {% for pro in collections['applicators'].products %}
@@ -424,33 +463,33 @@
                             {% assign pro_handle = grandchild_link.url | split: '/products/' | last %}
                             <!-- { % assign pro = all_products[pro_handle] %} -->
                             {% assign pro = grandchild_link.object %}
-                            <div class="menu-img-wrap {{ grandchild_link.title | downcase }}">
-                              {% if grandchild_link.title == "SPF Try-out box" or grandchild_link.title == "Mystery Balm" or grandchild_link.title == "Candy Cane" or grandchild_link.title contains "scrub" %} 
+                            <div class="menu-img-wrap {{ grandchild_link.title | downcase }} {% if pro.handle == "hb-pumpkin" or pro.handle == "hb-candy" or pro.handle == "hb-mystery-balm" %}sold__out{% endif %}">
+                              {% if pro.handle == "spf-try-out-box" or pro.handle == "hb-mystery-balm" or pro.handle == "hb-candy" or pro.handle contains "scrub" %} 
                                 <img src="{{ pro.images[1].src | img_url: '300x' }}"/>
-                              {% elsif grandchild_link.title == "Try-out box" %} 
+                              {% elsif pro.handle == "try-out-box" %} 
                                 <img src="{{ pro.images[0].src | img_url: '300x' }}"/>
-                              {% elsif child_link.title == 'Packs' %}
+                              {% elsif child_link.title == ctitle2 %}
                                 <img src="{{ pro.images[0].src | img_url: '300x' }}"/>                              
-                              {% elsif grandchild_link.title == "Watermelon" %}
+                              {% elsif pro.handle == "hb-watermelon" %}
                                 <img src="{{ pro.images[3].src | img_url: '300x' }}"/>
                               {% else %}
                                 <img src="{{ pro.images[6].src | img_url: '300x' }}"/>
                               {% endif %}
-                              {% if grandchild_link.title == "Caramelized Pear" or grandchild_link.title == "Candy Cane" %}
-                                <div class="menu-tag base-sm strong  new">New</div>
+                              {% if pro.handle == "hb-caramelized-pear" or pro.handle contains "scrub" %}
+                                <div class="menu-tag base-sm strong  new">{{ tag }}</div>
                               {% endif %}
-                              {% if grandchild_link.title == "Pumpkin Spice" or grandchild_link.title == "Mystery Balm" %}
-                                <div class="menu-tag base-sm strong  new">Sold out</div>
-                                
-                              {% elsif grandchild_link.title == "Honey lip scrub" %}
-                                  <div class="menu-tag base-sm strong  new">Temporarily unavailable</div>
-                                
+                              {% if pro.handle == "hb-pumpkin" or pro.handle == "hb-mystery-balm" or pro.handle == "hb-candy" %}
+                                <div class="menu-tag base-sm strong  new">{{ tag2 }}</div>
+                                {% comment %}
+                              {% elsif pro.handle == "spf-try-out-box" %}
+                                  <div class="menu-tag base-sm strong  new">{{ tag3 }}</div>
+                                {% endcomment %}
                               {% endif %}
                             </div>
                             <div class="mega-title heading4 strong">
                               {{ grandchild_link.title }}
                             </div>            
-                            <div class="mega-text base normal">{% if grandchild_link.title contains "scrub" %}Lip scrub{% else %}Lip balm{% endif %}</div>
+                            <div class="mega-text base normal">{% if pro.handle contains "scrub" %}{{ text6 }}{% else %}{{ text5 }}{% endif %}</div>
                           </a>
                         </li>
                       {% endfor %}
@@ -659,7 +698,7 @@
       >
       {{ cart_icon }}
       
-      <span class="icon-text">Bag</span>
+      <span class="icon-text">{{ Bag }}</span>
     </button>
     {% comment %}
     <noscript>
@@ -692,7 +731,7 @@
         {%- if show_icons -%}
         <span class="inline-block w-6 h-6 align-middle">{%- render 'icon-account' -%}</span>
       {%- endif -%}
-      <span class="icon-text">Account</span>
+      <span class="icon-text">{{ Account }}</span>
       </a>
     {% else %}
       <div class="ligin-wrap">
@@ -701,7 +740,7 @@
           {%- if show_icons -%}
           <span class="inline-block w-6 h-6 align-middle">{%- render 'icon-account' -%}</span>
           {%- endif -%}
-          <span class="icon-text">Account</span>
+          <span class="icon-text">{{ Account }}</span>
         </a>
         {% render 'login-popup' %}
       </div>
@@ -848,6 +887,8 @@
             <div class="header-search">
               {% render 'header-search' %}
             </div>
+
+            {% render 'custom-localization' %}
 
             <div class="hidden lg:block h-full">
               {{ accounts }}

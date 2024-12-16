@@ -1,3 +1,14 @@
+{% assign sale = 'Sale ends in:' %}
+{% assign hours = 'Hours' %}
+{% assign minutes = 'Minutes' %}
+{% assign seconds = 'Seconds' %}
+
+{% if shop.locale == 'es' %}
+  {% assign sale = 'La venta termina en:' %}
+  {% assign hours = 'Horas' %}
+  {% assign minutes = 'Minutos' %}
+  {% assign seconds = 'Segundos' %}
+{% endif %}
 <style>
   .product-block-container .se-wrapper{
     display: flex;
@@ -59,11 +70,11 @@
 }
 </style>
 <div class="se-wrapper" style="background-color: {{ timer-background }};">
-  <div class="se-l-text base strong">Sale ends in:</div> 
+  <div class="se-l-text base strong">{{ sale }}</div> 
   <div class="se-timer-wrap">
-    <div class="se-time-box hrs"><div class="se-time-text base normal">Hours</div><span class="base strong">00</span></div>
-    <div class="se-time-box mins"><div class="se-time-text base normal">Minutes</div><span class="base strong">00</span></div>
-    <div class="se-time-box secs"><div class="se-time-text base normal">Seconds</div><span class="base strong">00</span></div>
+    <div class="se-time-box hrs"><div class="se-time-text base normal">{{ hours }}</div><span class="base strong">00</span></div>
+    <div class="se-time-box mins"><div class="se-time-text base normal">{{ minutes }}</div><span class="base strong">00</span></div>
+    <div class="se-time-box secs"><div class="se-time-text base normal">{{ seconds }}</div><span class="base strong">00</span></div>
   </div>
 </div> 
 <script>
